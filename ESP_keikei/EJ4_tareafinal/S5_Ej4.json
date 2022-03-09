@@ -1,0 +1,280 @@
+[
+    {
+        "id": "f28ddfa44c67428a",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a73edd50f32e4f5a",
+        "type": "mqtt in",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "topic": "outTopic",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "16372edb68e2c02f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "d2b674ec079720e4"
+            ]
+        ]
+    },
+    {
+        "id": "294c8e7035b356a9",
+        "type": "mqtt out",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "topic": "inTopic",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "16372edb68e2c02f",
+        "x": 600,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "c639ebfac34e9280",
+        "type": "debug",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "e6dbb9ac0323b0f0",
+        "type": "ui_text",
+        "z": "f28ddfa44c67428a",
+        "group": "ca2f6f454ba4d7fd",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temperatura",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 750,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "888198322dabf641",
+        "type": "ui_text",
+        "z": "f28ddfa44c67428a",
+        "group": "ca2f6f454ba4d7fd",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Humedad",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 740,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d2b674ec079720e4",
+        "type": "json",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 360,
+        "y": 160,
+        "wires": [
+            [
+                "7ecdd6ced2e17dc3",
+                "656204135edf30c5",
+                "c639ebfac34e9280"
+            ]
+        ]
+    },
+    {
+        "id": "7ecdd6ced2e17dc3",
+        "type": "change",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperatura",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "e6dbb9ac0323b0f0"
+            ]
+        ]
+    },
+    {
+        "id": "656204135edf30c5",
+        "type": "change",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humedad",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "888198322dabf641"
+            ]
+        ]
+    },
+    {
+        "id": "83229b9d43756f5c",
+        "type": "ui_button",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "group": "70812b89d87e1736",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "APAGAR",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "294c8e7035b356a9"
+            ]
+        ]
+    },
+    {
+        "id": "18e49e8c1ec6f07b",
+        "type": "ui_button",
+        "z": "f28ddfa44c67428a",
+        "name": "",
+        "group": "70812b89d87e1736",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "ENCENDER",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 320,
+        "y": 440,
+        "wires": [
+            [
+                "294c8e7035b356a9"
+            ]
+        ]
+    },
+    {
+        "id": "16372edb68e2c02f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ca2f6f454ba4d7fd",
+        "type": "ui_group",
+        "name": "Lectura Datos",
+        "tab": "a8cf2bc61962108a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "70812b89d87e1736",
+        "type": "ui_group",
+        "name": "Control LED",
+        "tab": "a8cf2bc61962108a",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a8cf2bc61962108a",
+        "type": "ui_tab",
+        "name": "ESP8266",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
